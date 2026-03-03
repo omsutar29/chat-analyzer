@@ -105,7 +105,8 @@ export default function MemberAnalysis({ members }) {
     setMemberData(null)
 
     try {
-      const res = await axios.get(`/api/member`, { params: { name } })
+      const BASE = import.meta.env.VITE_API_URL || ''
+      const res = await axios.get(`${BASE}/api/member`, { params: { name } })
       setMemberData(res.data)
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to load member data.')

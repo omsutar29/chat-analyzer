@@ -72,7 +72,8 @@ export default function UploadModal({ onClose, onDataReady }) {
     formData.append('file', file)
 
     try {
-      const response = await axios.post('/api/upload', formData, {
+      const BASE = import.meta.env.VITE_API_URL || ''
+      const response = await axios.post(`${BASE}/api/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (e) => {
           // Show upload progress (0-50%), analysis is the other 50%
